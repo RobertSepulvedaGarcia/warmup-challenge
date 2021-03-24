@@ -1,0 +1,14 @@
+.container {
+    display: grid;
+    grid-template-rows: 10% 90%;
+    height: 100vh;
+}
+
+.navbar {
+    background-color: black;
+}
+
+.body {
+    padding-left: 20%;
+    padding-left: 20%;
+}
