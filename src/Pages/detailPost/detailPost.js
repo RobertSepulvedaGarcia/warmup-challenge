@@ -1,12 +1,11 @@
 import React from "react";
 import Layout from "../../Components/Layout/Layout";
-import PostList from "../../Components/PostList/PostList";
-const home = () => {
+const detailPost = () => {
   return (
     <Layout>
-      <PostList />
+      <h1>Detalles</h1>
     </Layout>
   );
 };
 
-export default home;
+export default detailPost;

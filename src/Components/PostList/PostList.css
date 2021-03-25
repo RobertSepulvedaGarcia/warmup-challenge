@@ -1,0 +1,14 @@
+.list-container {
+    display: grid;
+    grid-template-columns: 70% 15% 15%;
+}
+
+.element-2 {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.element-3 {
+    display: flex;
+    justify-content: center;
+}
