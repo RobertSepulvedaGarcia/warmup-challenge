@@ -13,12 +13,14 @@ const PostDetail = ({ idPost }) => {
     <div className="container-detail">
       <Jumbotron fluid className="element">
         <Container>
-          <p className="display-3 text-center text-sm-left">{data.title}</p>
+          <p className="display-3 text-center text-sm-left font-weight-bold">
+            {data.title}
+          </p>
         </Container>
       </Jumbotron>
       <Jumbotron fluid className="element">
         <Container>
-          <p className="text-justify">{data.body}</p>
+          <p className="text-justify font-italic">{data.body}</p>
         </Container>
       </Jumbotron>
     </div>
