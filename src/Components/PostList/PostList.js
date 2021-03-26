@@ -1,19 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
-import { AiFillEdit, AiFillDelete } from "react-icons/ai";
-import usePostFetch from "../../Hooks/usePostsFetch";
-import { deletePost } from "../../apiFunctions/deletePost";
-import { url } from "../../Utils/endpoint";
+import { AiFillDelete } from "react-icons/ai";
+import UpdateButton from "../UpdateButton/UpdateButton";
+import { getPosts, deletePost } from "../../services/services";
+import Swal from "sweetalert2";
 import "./PostList.css";
 
 const PostList = () => {
   const { Body, Footer, Title } = Card;
-  const { data } = usePostFetch(url);
+  const [state, setState] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const data = await getPosts();
+        setState(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getData();
+  }, []);
+
+  const erasePost = async (postId) => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "This action cannot be reverted!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yeah!, Destroy it!",
+        cancelButtonText: "No way!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            const data = await deletePost(postId, state);
+            console.log(data);
+            setState(data);
+          } catch (error) {
+            console.error(error);
+          }
+          Swal.fire("Done!", "The post was deleted.", "success");
+        }
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="container-posts">
-      {data.map((post) => {
+      {state.map((post) => {
         return (
           <div key={post.id} className="element">
             <Card
@@ -24,7 +65,7 @@ const PostList = () => {
             >
               <Body>
                 <Title>
-                  <h1>{post.title}</h1>
+                  <h1> {post.title} </h1>
                 </Title>
               </Body>
               <Footer>
@@ -41,20 +82,11 @@ const PostList = () => {
                     </Link>
                   </div>
                   <div className="action">
-                    <Button
-                      style={{ width: "100%" }}
-                      variant="primary"
-                      size="md"
-                    >
-                      Edit
-                      <span>
-                        <AiFillEdit />
-                      </span>
-                    </Button>
+                    <UpdateButton id={post.id} />
                   </div>
                   <div className="action">
                     <Button
-                      onClick={() => deletePost(url, post.id)}
+                      onClick={() => erasePost(post.id)}
                       style={{ width: "100%" }}
                       variant="danger"
                       size="md"
