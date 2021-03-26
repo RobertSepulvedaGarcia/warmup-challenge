@@ -1,9 +1,10 @@
 import React from "react";
 import Layout from "../../Components/Layout/Layout";
+import Form from "../../Components/Form/Form";
 const newPost = () => {
   return (
     <Layout>
-      <h1>Aca va formulario</h1>
+      <Form />
     </Layout>
   );
 };

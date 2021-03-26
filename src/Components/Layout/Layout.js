@@ -6,9 +6,16 @@ const Layout = ({ children }) => {
   return (
     <div className="containerlayout">
       <div className="navbar">
-        <Link to="/">
-          <Button variant="success"> Home </Button>
-        </Link>
+        <div className="navlink">
+          <Link to="/">
+            <Button variant="outline-light"> Home </Button>
+          </Link>
+          <Link to="/newPost">
+            <Button className="ml-2" variant="outline-light">
+              New Post
+            </Button>
+          </Link>
+        </div>
       </div>
       <div className="body"> {children} </div>
     </div>

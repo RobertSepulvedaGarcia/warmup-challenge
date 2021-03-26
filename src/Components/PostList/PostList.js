@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import usePostFetch from "../../Hooks/usePostsFetch";
+import { deletePost } from "../../apiFunctions/deletePost";
 import { url } from "../../Utils/endpoint";
 import "./PostList.css";
 
@@ -53,6 +54,7 @@ const PostList = () => {
                   </div>
                   <div className="action">
                     <Button
+                      onClick={() => deletePost(url, post.id)}
                       style={{ width: "100%" }}
                       variant="danger"
                       size="md"
