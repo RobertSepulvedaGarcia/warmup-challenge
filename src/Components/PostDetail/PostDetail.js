@@ -7,8 +7,6 @@ const PostDetail = ({ idPost }) => {
   const urlWithId = `${url}/${idPost}`;
   const { data } = usePostsFetch(urlWithId);
 
-  console.log(data);
-
   return (
     <div className="container-detail">
       <Jumbotron fluid className="element">
