@@ -1,9 +1,12 @@
 import React from "react";
 import Layout from "../../Components/Layout/Layout";
+import PostDetail from "../../Components/PostDetail/PostDetail";
 const detailPost = () => {
+  const id = window.location.search.slice(4);
+
   return (
     <Layout>
-      <h1>Detalles</h1>
+      <PostDetail idPost={id} />
     </Layout>
   );
 };

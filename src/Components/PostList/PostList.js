@@ -25,17 +25,25 @@ const PostList = () => {
                 <Title>
                   <h1>{post.title}</h1>
                 </Title>
-                <Link to={`/details?id=${post.id}`}>
-                  <Button variant="success">Go post</Button>
-                </Link>
               </Body>
               <Footer>
                 <div className="actions">
                   <div className="action">
+                    <Link to={`/details?id=${post.id}`}>
+                      <Button
+                        style={{ width: "100%" }}
+                        variant="success"
+                        size="md"
+                      >
+                        Read it!
+                      </Button>
+                    </Link>
+                  </div>
+                  <div className="action">
                     <Button
                       style={{ width: "100%" }}
                       variant="primary"
-                      size="lg"
+                      size="md"
                     >
                       Edit
                       <span>
@@ -47,7 +55,7 @@ const PostList = () => {
                     <Button
                       style={{ width: "100%" }}
                       variant="danger"
-                      size="lg"
+                      size="md"
                     >
                       Delete
                       <span>
